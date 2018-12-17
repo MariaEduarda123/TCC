@@ -9,6 +9,7 @@
 <title>Lista de Alunos</title>
 </head>
 <body>
+	<c:import url="../menu.jsp"></c:import>
 
 	<h1>Lista de Alunos</h1>
 
@@ -17,7 +18,6 @@
 			<tr>
 				<th>Nome</th>
 				<th>Matrícula</th>
-				<th>Turma</th>
 				
 			</tr>
 		</thead>
@@ -29,7 +29,6 @@
 
 					<td>${aluno.nome}</td>
 					<td>${aluno.matricula}</td>
-					<td>${aluno.turma}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

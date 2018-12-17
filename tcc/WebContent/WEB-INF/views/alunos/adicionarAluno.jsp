@@ -9,8 +9,9 @@
 <title>Adicionar Aluno</title>
 </head>
 <body>
-
 	<c:import url="../menu.jsp"></c:import>
+
+<form action="/tcc/alunos"  method="post">
 
 	<h1>Adicionar Aluno</h1>
 	
@@ -25,6 +26,6 @@
 		<div>
 			 <input type="submit" value="Adicionar Aluno">
 		</div>
-
+</form>
 </body>
 </html>
