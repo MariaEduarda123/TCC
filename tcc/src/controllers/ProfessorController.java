@@ -12,14 +12,15 @@ import daos.ProfessorDAO;
 import models.Professor;
 
 @Controller
+@RequestMapping("/professores")
 public class ProfessorController {
 
-	@RequestMapping("/professores/adicionarProfessor")
+	@RequestMapping("/adicionarProfessor")
 	public String form() {
 		return "professores/adicionarProfessor";
 	}
 	
-	@PostMapping("/professores")
+	@PostMapping
 	public String adicionar(Professor professor) {
 		System.out.println(professor);
 		ProfessorDAO professorDAO = new ProfessorDAO();
@@ -28,7 +29,7 @@ public class ProfessorController {
 		return "redirect:professores";
 	}
 	
-	@GetMapping("/prefossores")
+	@GetMapping
 	public ModelAndView listar() {
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		List<Professor> lista = professorDAO.getLista();
@@ -38,7 +39,7 @@ public class ProfessorController {
 		return model;
 	}
 	
-	@RequestMapping("/professores/remover")
+	@RequestMapping("/remover")
 	public ModelAndView remover(Professor professor) {
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		professorDAO.remover(professor);

@@ -1,14 +1,14 @@
 package models;
 public class Disciplina {
-	private int ID;
+	private int id;
 	private String Nome;
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public String getNome() {

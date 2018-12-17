@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
 	private static Connection con = null;
-	private static final String banco = "borboletas";
+	private static final String banco = "gestaodeatividades";
 	private static final String user = "root";
 	private static final String password = "lab02";
 

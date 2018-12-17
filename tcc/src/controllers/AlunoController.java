@@ -12,14 +12,15 @@ import daos.AlunoDAO;
 import models.Aluno;
 
 @Controller
+@RequestMapping("/alunos")
 public class AlunoController {
 
-	@RequestMapping("/alunos/adicionarAluno")
+	@RequestMapping("/adicionarAluno")
 	public String form() {
 		return "alunos/adicionarAluno";
 	}
 	
-	@PostMapping("/alunos")
+	@PostMapping
 	public String adicionar(Aluno aluno) {
 		System.out.println(aluno);
 		AlunoDAO alunoDAO = new AlunoDAO();
@@ -28,7 +29,7 @@ public class AlunoController {
 		return "redirect:alunos";
 	}
 	
-	@GetMapping("/alunos")
+	@GetMapping
 	public ModelAndView listar() {
 		AlunoDAO alunoDAO = new AlunoDAO();
 		List<Aluno> lista = alunoDAO.getLista();
@@ -38,7 +39,7 @@ public class AlunoController {
 		return model;
 	}
 	
-	@RequestMapping("/alunos/remover")
+	@RequestMapping("/remover")
 	public ModelAndView remover(Aluno aluno) {
 		AlunoDAO alunoDAO = new AlunoDAO();
 		alunoDAO.remover(aluno);

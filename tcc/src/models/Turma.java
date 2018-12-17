@@ -1,15 +1,16 @@
 package models;
 public class Turma {
-	private int ID;
+	private int id;
 	private String Nome;
 	private Professor professor;
+	private Disciplina disciplina;
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public String getNome() {
@@ -26,6 +27,14 @@ public class Turma {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 }

@@ -3,17 +3,17 @@ package models;
 import java.util.List;
 
 public class Professor {
-	private int ID;
+	private int id;
 	private String Nome;
 	private String Matricula;
 	private List<Turma> turmas;
 	
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public String getNome() {

@@ -12,6 +12,7 @@ import daos.TurmaDAO;
 import models.Turma;
 
 @Controller
+@RequestMapping("/turmas")
 public class TurmaController {
 	
 	@RequestMapping("/turmas/form")

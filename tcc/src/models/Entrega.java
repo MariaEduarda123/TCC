@@ -1,7 +1,6 @@
 package models;
 public class Entrega {
 	private String Data;
-	private String arquivo;
 	private Atividade atividade;
 	private Aluno aluno;
 
@@ -11,14 +10,6 @@ public class Entrega {
 
 	public void setData(String data) {
 		Data = data;
-	}
-
-	public String getArquivo() {
-		return arquivo;
-	}
-
-	public void setArquivo(String arquivo) {
-		this.arquivo = arquivo;
 	}
 
 	public Atividade getAtividade() {

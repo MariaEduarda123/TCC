@@ -63,6 +63,24 @@ public class AlunoDAO {
 		}
 
 	}
+
+
+	public boolean alterar(Aluno aluno) {
+		String sql = "update aluno set nome=?, matricula=?, turma=? where id=?;";
+		try {
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			stmt.setString(1, aluno.getNome());
+			stmt.setString(2, aluno.getMatricula());
+//			stmt.setString(3, aluno.getTurmas());
+			stmt.setLong(5, aluno.getID());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+}
 	
 	public void remover(Aluno aluno) {
 		try {

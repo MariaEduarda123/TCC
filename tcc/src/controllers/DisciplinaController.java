@@ -12,14 +12,15 @@ import daos.DisciplinaDAO;
 import models.Disciplina;
 
 @Controller
+@RequestMapping("disciplinas")
 public class DisciplinaController {
 	
-	@RequestMapping("/disciplinas/form")
+	@RequestMapping("/form")
 	public String form() {
 		return "disciplinas/form";
 	}
 	
-	@PostMapping("/disciplinas")
+	@PostMapping
 	public String adicionar(Disciplina disciplina) {
 		System.out.println(disciplina);
 		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
@@ -28,7 +29,7 @@ public class DisciplinaController {
 		return "redirect:disciplinas";
 	}
 	
-	@GetMapping("/disciplinas")
+	@GetMapping
 	public ModelAndView listar() {
 		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
 		List<Disciplina> lista = disciplinaDAO.getLista();
@@ -38,7 +39,7 @@ public class DisciplinaController {
 		return model;
 	}
 	
-	@RequestMapping("/disciplinas/remover")
+	@RequestMapping("/remover")
 	public ModelAndView remover(Disciplina disciplina) {
 		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
 		disciplinaDAO.remover(disciplina);

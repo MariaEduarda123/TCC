@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import models.Turma;
 import models.Aluno;
 import models.Atividade;
 import models.Turma;
@@ -83,4 +84,39 @@ public class AtividadeDAO {
 		return atividades;
 		
 	}
+	
+	public List<Atividade> getLista() {
+		try {
+
+			List<Atividade> atividades = new ArrayList<Atividade>();
+			Connection con = null;
+			PreparedStatement stmt = (PreparedStatement) con.prepareStatement("select * from atividades");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Atividade atividade = new Atividade();
+
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("turma_id"));
+				atividade.setTurma(turma);
+
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataAplicacao"));
+				atividade.setDataAplicacao(data);
+
+				if (rs.getDate("dataEntrega") != null) {
+					Calendar data2 = Calendar.getInstance();
+					data2.setTime(rs.getDate("dataEntrega"));
+					atividade.setDataEntrega(data2);
+				}
+				atividades.add(atividade);
+			}
+			rs.close();
+			stmt.close();
+			return atividades;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 }
