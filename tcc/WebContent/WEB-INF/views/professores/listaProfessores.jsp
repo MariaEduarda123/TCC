@@ -11,12 +11,16 @@
 <body>
 
 		<c:import url="../menu.jsp"></c:import>
-
+<table border=1>
 		<thead>
 			<tr>
 				<th>Nome</th>
 				<th>Matricula</th>
-				<th>Turma</th>
+				<th>Turma 1</th>
+				<th>Turma 2</th>
+				<th>Turma 3</th>
+				<th>Turma 4</th>
+				<th>Turma 5</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,10 +28,8 @@
 
 				
 				<tr>
-
 					<td>${professor.nome}</td>
 					<td>${professor.matricula}</td>
-					<td>${professor.turma}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

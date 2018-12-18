@@ -15,20 +15,24 @@ import models.Turma;
 @RequestMapping("/turmas")
 public class TurmaController {
 	
-	@RequestMapping("/turmas/form")
+	@RequestMapping("/adicionarTurma")
 	public String form() {
-		return "turmas/form";
+		return "turmas/adicionarTurma";
 	}
 	
-	@PostMapping("/turmas")
+	@PostMapping
 	public String adicionar(Turma turma) {
 		TurmaDAO turmaDAO = new TurmaDAO();
+		
+		System.out.println("Turma: " + turma.getNome());
+		System.out.println("Professor id: " + turma.getProfessor());
+		System.out.println("Disciplina id: " + turma.getDisciplina());
 		turmaDAO.adicionar(turma);
 		
 		return "redirect:turmas";
 	}
 	
-	@GetMapping("/turmas")
+	@GetMapping
 	public ModelAndView listar() {
 		TurmaDAO turmaDAO = new TurmaDAO();
 		List<Turma> lista = turmaDAO.getLista();
@@ -38,7 +42,7 @@ public class TurmaController {
 		return model;
 	}
 	
-	@RequestMapping("/turmas/remover")
+	@RequestMapping("/remover")
 	public ModelAndView remover(Turma turma) {
 		TurmaDAO turmaDAO = new TurmaDAO();
 		turmaDAO.remover(turma);

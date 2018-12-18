@@ -5,7 +5,7 @@
     <ul>
     	<li><a href="/tcc/">Home</a></li>
     	<li><a href="/tcc/alunos/adicionarAluno/">Adicionar Aluno</a></li>
-    	<li><a href="/tcc/alunos/listaAlunos">Listar Alunos</a></li>
+    	<li><a href="/tcc/alunos/">Listar Alunos</a></li>
     	<li><a href="/tcc/atividades/listaAtividades/">Atividades</a></li>
     	<li><a href="/tcc/atividades/listaAtividadesParaFazer">Listar Alunos</a></li>
         <li><a href="/tcc/professores/adicionarProfessor/">Adicionar Professor</a></li>

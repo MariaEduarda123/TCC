@@ -12,6 +12,7 @@ import com.mysql.jdbc.PreparedStatement;
 import models.Turma;
 import models.Aluno;
 import models.Atividade;
+import models.Disciplina;
 import models.Turma;
 
 public class AtividadeDAO {
@@ -99,9 +100,6 @@ public class AtividadeDAO {
 				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("turma_id"));
 				atividade.setTurma(turma);
 
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("dataAplicacao"));
-				atividade.setDataAplicacao(data);
 
 				if (rs.getDate("dataEntrega") != null) {
 					Calendar data2 = Calendar.getInstance();
@@ -116,7 +114,20 @@ public class AtividadeDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
+		
+		public void remover (Atividade atividade) {
+			try {
+				PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from atividades where id=?;");
+				stmt.setLong(1, atividade.getId());
+				stmt.execute();
+				stmt.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+	
 
 }

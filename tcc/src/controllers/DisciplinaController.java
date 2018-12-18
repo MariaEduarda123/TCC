@@ -12,12 +12,12 @@ import daos.DisciplinaDAO;
 import models.Disciplina;
 
 @Controller
-@RequestMapping("disciplinas")
+@RequestMapping("/disciplinas")
 public class DisciplinaController {
 	
-	@RequestMapping("/form")
+	@RequestMapping("/adicionarDisciplina")
 	public String form() {
-		return "disciplinas/form";
+		return "disciplinas/adicionarDisciplina";
 	}
 	
 	@PostMapping

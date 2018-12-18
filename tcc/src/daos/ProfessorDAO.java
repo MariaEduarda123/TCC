@@ -64,7 +64,7 @@ private Connection con;
 	public void remover(Professor professor) {
 		try {
 			PreparedStatement stmt = (PreparedStatement) con.prepareStatement("delete from professores where id=?;");
-			stmt.setLong(1, professor.getID());
+			stmt.setLong(1, professor.getId());
 			
 			stmt.execute();
 			stmt.close();

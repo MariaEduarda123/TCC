@@ -8,11 +8,11 @@ public class Professor {
 	private String Matricula;
 	private List<Turma> turmas;
 	
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
-	public void setID(int iD) {
+	public void setId(int iD) {
 		id = iD;
 	}
 

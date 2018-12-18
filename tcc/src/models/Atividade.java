@@ -6,7 +6,6 @@ import java.util.List;
 public class Atividade {
 	private int id;
 	private String Descricao;
-	private Calendar DataAplicacao;
 	private Calendar DataEntrega;
 	private Turma turma;
 	private List<Entrega> entregas;
@@ -51,11 +50,5 @@ public class Atividade {
 		this.entregas = entregas;
 	}
 
-	public Calendar getDataAplicacao() {
-		return DataAplicacao;
-	}
 
-	public void setDataAplicacao(Calendar dataAplicacao) {
-		DataAplicacao = dataAplicacao;
-	}
 }

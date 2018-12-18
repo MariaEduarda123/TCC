@@ -20,7 +20,7 @@
 		</div>
 		
 		<div>
-			<label>Matrícula: <input type="text" name="matricula"></label>
+			<label>Matricula: <input type="text" name="matricula"></label>
 		</div>
 		
 		<div>

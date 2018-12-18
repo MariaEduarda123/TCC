@@ -20,13 +20,14 @@ private Connection con;
 	}
 	
 	public boolean adicionar (Turma turma) {
-		String sql = "insert into turmas (nome) values (?);";
+		String sql = "insert into turmas (nome, disciplina_id, professor_id) values (?, ?, ?);";
 		
 		try {
 			PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
 			
 			stmt.setString(1, turma.getNome());
-			
+			stmt.setLong(2, turma.getDisciplina().getID());
+			stmt.setLong(3, turma.getProfessor().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
