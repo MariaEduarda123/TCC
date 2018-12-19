@@ -9,20 +9,21 @@ import java.util.List;
 import com.mysql.jdbc.PreparedStatement;
 
 import models.Professor;
+import models.Professor;
 
 public class ProfessorDAO {
 
-private Connection con;
+private Connection connection;
 	
 	public ProfessorDAO () {
-		con = ConnectionFactory.getConnetion();
+		connection = ConnectionFactory.getConnetion();
 	}
 	
 	public boolean adicionar (Professor professor) {
 		String sql = "insert into professores (nome, matricula) values (?, ?);";
 		
 		try {
-			PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			
 			stmt.setString(1, professor.getNome());
 			stmt.setString(2, professor.getMatricula());
@@ -42,7 +43,7 @@ private Connection con;
 		try {
 
 			List<Professor> professores = new ArrayList<Professor>();
-			PreparedStatement stmt = (PreparedStatement) con.prepareStatement("select * from professores;");
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("select * from professores;");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -61,13 +62,57 @@ private Connection con;
 
 	}
 	
+	public boolean alterar(Professor professor) {
+		String sql = "update aluno set nome=?, matricula=?, turma=? where id=?;";
+		try {
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			stmt.setString(1, professor.getNome());
+			stmt.setString(2, professor.getMatricula());
+//			stmt.setString(3, professor.getTurmas());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+}
+	
 	public void remover(Professor professor) {
 		try {
-			PreparedStatement stmt = (PreparedStatement) con.prepareStatement("delete from professores where id=?;");
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from professores where id=?;");
 			stmt.setLong(1, professor.getId());
 			
 			stmt.execute();
 			stmt.close();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public Professor getProfessorByID(long id) {
+		try {
+
+			Professor professor = null;
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from alunos where id=?;");
+			stmt.setLong(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				
+				professor = new Professor();
+				professor.setId(rs.getInt("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setMatricula(rs.getString("matricula"));
+				
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			return professor;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import models.Aluno;
 import models.Disciplina;
 
 public class DisciplinaDAO {
@@ -63,12 +64,53 @@ private Connection connection;
 
 	}
 	
+	public boolean alterar(Disciplina disciplina) {
+		String sql = "update disciplina set nome=? where id=?;";
+		try {
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			stmt.setString(1, disciplina.getNome());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+}
+	
 	public void remover(Disciplina disciplina) {
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from disciplinas where id=?;");
 			stmt.setLong(1, disciplina.getID());
 			stmt.execute();
 			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public Disciplina getDisciplinaByID(long id) {
+		try {
+
+			Disciplina disciplina = null;
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from alunos where id=?;");
+			stmt.setLong(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				
+				disciplina = new Disciplina();
+				disciplina.setID(rs.getInt("id"));
+				disciplina.setNome(rs.getString("nome"));
+				
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			return disciplina;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

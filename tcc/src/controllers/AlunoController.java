@@ -46,6 +46,28 @@ public class AlunoController {
 		
 		return listar();
 	}
+	
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar (Aluno aluno) {
+		System.out.println("chamou o método selecionar");
+		AlunoDAO alunoDAO = new AlunoDAO();
+		aluno = alunoDAO.getAlunoByID((long) aluno.getID());
+		
+		ModelAndView model = new ModelAndView("alunos/alterarAluno");
+		model.addObject("aluno", aluno);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Aluno aluno) {
+		System.out.println("chamou o método alterar");
+		System.out.println(aluno);
+		AlunoDAO alunoDAO = new AlunoDAO();
+		alunoDAO.alterar(aluno);
+		
+		return "redirect:/alunos";
+	}
 
 	
 }

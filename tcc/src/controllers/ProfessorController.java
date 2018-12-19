@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import daos.AlunoDAO;
 import daos.ProfessorDAO;
+import models.Aluno;
 import models.Professor;
 
 @Controller
@@ -45,6 +47,28 @@ public class ProfessorController {
 		professorDAO.remover(professor);
 		
 		return listar();
+	}
+	
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar (Professor professor) {
+		System.out.println("chamou o método selecionar");
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		professor = professorDAO.getProfessorByID((long) professor.getId());
+		
+		ModelAndView model = new ModelAndView("professores/alterarProfessor");
+		model.addObject("professor", professor);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Professor professor) {
+		System.out.println("chamou o método alterar");
+		System.out.println(professor);
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		professorDAO.alterar(professor);
+		
+		return "redirect:/professores";
 	}
 
 	

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import daos.ProfessorDAO;
 import daos.TurmaDAO;
+import models.Professor;
 import models.Turma;
 
 @Controller
@@ -50,5 +52,26 @@ public class TurmaController {
 		return listar();
 	}
 
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar (Turma turma) {
+		System.out.println("chamou o método selecionar");
+		TurmaDAO turmaDAO = new TurmaDAO();
+		turma = turmaDAO.getTurmaByID((long) turma.getID());
+		
+		ModelAndView model = new ModelAndView("turmas/alterarTurmar");
+		model.addObject("turma", turma);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Turma turma) {
+		System.out.println("chamou o método alterar");
+		System.out.println(turma);
+		TurmaDAO turmaDAO = new TurmaDAO();
+		turmaDAO.alterar(turma);
+		
+		return "redirect:/turmas";
+	}
 
 }

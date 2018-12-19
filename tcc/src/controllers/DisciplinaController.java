@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import daos.AlunoDAO;
 import daos.DisciplinaDAO;
+import models.Aluno;
 import models.Disciplina;
 
 @Controller
@@ -46,6 +48,29 @@ public class DisciplinaController {
 		
 		return listar();
 	}
+	
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar (Disciplina disciplina) {
+		System.out.println("chamou o método selecionar");
+		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+		disciplina = disciplinaDAO.getDisciplinaByID((long) disciplina.getID());
+		
+		ModelAndView model = new ModelAndView("disciplinas/alterarDisciplina");
+		model.addObject("disciplina", disciplina);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Disciplina disciplina) {
+		System.out.println("chamou o método alterar");
+		System.out.println(disciplina);
+		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+		disciplinaDAO.alterar(disciplina);
+		
+		return "redirect:/disciplinas";
+}
+
 
 
 }

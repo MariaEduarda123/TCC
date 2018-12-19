@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Lista de Professores</title>
 </head>
 <body>
@@ -16,11 +16,6 @@
 			<tr>
 				<th>Nome</th>
 				<th>Matricula</th>
-				<th>Turma 1</th>
-				<th>Turma 2</th>
-				<th>Turma 3</th>
-				<th>Turma 4</th>
-				<th>Turma 5</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,6 +25,8 @@
 				<tr>
 					<td>${professor.nome}</td>
 					<td>${professor.matricula}</td>
+					<td><a href="/tcc/professores/remover?id=${professor.id}">Remover</a></td>
+					<td><a href="/tcc/professores/selecionar?id=${professor.id}">Alterar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
