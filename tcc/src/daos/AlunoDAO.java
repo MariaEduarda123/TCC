@@ -71,7 +71,7 @@ public class AlunoDAO {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.setString(1, aluno.getNome());
 			stmt.setString(2, aluno.getMatricula());
-//			stmt.setString(3, aluno.getTurmas());
+//			stmt.setStrig(3, aluno.getTurmas());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

@@ -1,6 +1,7 @@
 package daos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import models.Turma;
 import models.Aluno;
 import models.Atividade;
 import models.Disciplina;
+import models.Professor;
 import models.Turma;
 
 public class AtividadeDAO {
@@ -49,71 +51,100 @@ public class AtividadeDAO {
 		return false;
 	}
 	
-	public List<Atividade> getAtividadesParaFazer() {
-		
-		List<Atividade> atividades = new ArrayList<Atividade>();
-		
+	public List<Atividade> getAtividades() {
+		List<Atividade> atividades = new ArrayList<>();
+
 		try {
-				
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("select * from atividades where dataEntrega is null;");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from atividades;");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				
-				Atividade atividade = new Atividade();
-				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("turma_id"));
-				Aluno aluno = new AlunoDAO().getAlunoByID(rs.getLong("aluno_id"));
 
+				Atividade atividade = new Atividade();
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
 				atividade.setTurma(turma);
+
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("dataEntrega"));
 				atividade.setDataEntrega(data);
 
 				if (rs.getDate("dataEntrega") != null) {
-					Calendar dataEntrega = Calendar.getInstance();
-					dataEntrega.setTime(rs.getDate("dataEntrega"));
-					atividade.setDataEntrega(dataEntrega);
+					data.setTime(rs.getDate("dataEntrega"));
+
+					atividade.setDataEntrega(data);
+
+				} else {
+					atividade.setDataEntrega(null);
 				}
 
-				atividades.add(atividade);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return atividades;
-		
-	}
-	
-	public List<Atividade> getLista() {
-		try {
-
-			List<Atividade> atividades = new ArrayList<Atividade>();
-			Connection con = null;
-			PreparedStatement stmt = (PreparedStatement) con.prepareStatement("select * from atividades");
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				Atividade atividade = new Atividade();
-
-				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("turma_id"));
-				atividade.setTurma(turma);
-
-
-				if (rs.getDate("dataEntrega") != null) {
-					Calendar data2 = Calendar.getInstance();
-					data2.setTime(rs.getDate("dataEntrega"));
-					atividade.setDataEntrega(data2);
-				}
 				atividades.add(atividade);
 			}
 			rs.close();
 			stmt.close();
-			return atividades;
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
+
+		return atividades;
+	}
+
+	public List<Atividade> getAtividadesAtrasadas() {
+		List<Atividade> result = new ArrayList<>();
+
+		try {
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from atividades where dataEntrega IS NULL and dataEntrega < ?;");
+			Calendar data = Calendar.getInstance();
+			stmt.setDate(1, new Date(data.getTimeInMillis() - 14 * 24 * 60 * 60 * 1000));
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				Atividade atividade = new Atividade();
+				Calendar dataEntregao = Calendar.getInstance();
+				dataEntregao.setTime(rs.getDate("dataEntrega"));
+//				atividade.setDataEntrega("dataEntrega");
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
+				atividade.setTurma(turma);
+
+				result.add(atividade);
+
+
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public List<Atividade> getEmprestimosAtivos() {
+		List<Atividade> atividades = new ArrayList<>();
+
+		try {
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from atividade where dataEntrega IS NULL;");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				Atividade atividade = new Atividade();
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataEntrega"));
+//				atividade.setDataEmprestimo(data);
+				atividade.setTurma(turma);
+
+				atividades.add(atividade);
+
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return atividades;
 	}
 		
 		public void remover (Atividade atividade) {
