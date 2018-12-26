@@ -31,8 +31,6 @@
 					<td>${turma.nome}</td>
 					<td>${turma.disciplina}</td>
 					<td>${turma.professor}</td>
-					<td><a href="/tcc/turmas/remover?id=${turma.id}">Remover</a></td>
-					<td><a href="/tcc/turmas/selecionar?id=${turma.id}">Alterar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

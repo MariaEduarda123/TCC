@@ -51,7 +51,7 @@ public class AtividadeDAO {
 		return false;
 	}
 	
-	public List<Atividade> getAtividades() {
+	public List<Atividade> getLista() {
 		List<Atividade> atividades = new ArrayList<>();
 
 		try {
@@ -119,7 +119,7 @@ public class AtividadeDAO {
 		return result;
 	}
 
-	public List<Atividade> getEmprestimosAtivos() {
+	public List<Atividade> getAtividadesParaFazer() {
 		List<Atividade> atividades = new ArrayList<>();
 
 		try {

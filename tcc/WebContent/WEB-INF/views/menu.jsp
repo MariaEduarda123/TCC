@@ -6,11 +6,12 @@
     	<li><a href="/tcc/">Home</a></li>
     	<li><a href="/tcc/alunos/adicionarAluno/">Adicionar Aluno</a></li>
     	<li><a href="/tcc/alunos/">Listar Alunos</a></li>
-    	<li><a href="/tcc/atividades/listaAtividades/">Atividades</a></li>
-    	<li><a href="/tcc/atividades/listaAtividadesParaFazer">Listar Alunos</a></li>
+    	<li><a href="/tcc/atividades/adicionarAtividade/">Adicionar Atividade</a></li>
+    	<li><a href="/tcc/atividades/">Atividades</a></li>
+		<li><a href="/tcc/atividades/listaAtividadesParaFazer">Listar Atividades Para Fazer</a></li>
         <li><a href="/tcc/professores/adicionarProfessor/">Adicionar Professor</a></li>
-    	<li><a href="/tcc/professores/listaProfessores">Listar Professores</a></li>
+    	<li><a href="/tcc/professores/">Listar Professores</a></li>
     	<li><a href="/tcc/turmas/adicionarTurma/">Adicionar Turma</a></li>
-    	<li><a href="/tcc/turmas/listaTurmas">Listar Turmas</a></li>
+    	<li><a href="/tcc/turmas/">Listar Turmas</a></li>
     </ul>
 </nav>

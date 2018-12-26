@@ -47,7 +47,7 @@ public class AlunoController {
 		return listar();
 	}
 	
-	@RequestMapping("/selecionar")
+	@RequestMapping("/selecionarAluno")
 	public ModelAndView selecionar (Aluno aluno) {
 		System.out.println("chamou o método selecionar");
 		AlunoDAO alunoDAO = new AlunoDAO();

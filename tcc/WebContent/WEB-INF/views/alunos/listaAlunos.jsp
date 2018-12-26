@@ -29,8 +29,6 @@
 
 					<td>${aluno.nome}</td>
 					<td>${aluno.matricula}</td>
-					<td><a href="/tcc/alunos/remover?id=${aluno.id}">Remover</a></td>
-					<td><a href="/tcc/alunos/selecionar?id=${aluno.id}">Alterar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

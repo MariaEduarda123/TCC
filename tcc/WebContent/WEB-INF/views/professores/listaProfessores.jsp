@@ -25,8 +25,6 @@
 				<tr>
 					<td>${professor.nome}</td>
 					<td>${professor.matricula}</td>
-					<td><a href="/tcc/professores/remover?id=${professor.id}">Remover</a></td>
-					<td><a href="/tcc/professores/selecionar?id=${professor.id}">Alterar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
