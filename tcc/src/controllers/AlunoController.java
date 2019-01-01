@@ -59,7 +59,7 @@ public class AlunoController {
 		return model;
 	}
 	
-	@PostMapping("/alterar")
+	@PostMapping("/alterarAluno")
 	public String alterar(Aluno aluno) {
 		System.out.println("chamou o método alterar");
 		System.out.println(aluno);

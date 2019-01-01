@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Lista de Alunos</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
 </head>
 <body>
 	<c:import url="../menu.jsp"></c:import>
@@ -29,6 +30,7 @@
 
 					<td>${aluno.nome}</td>
 					<td>${aluno.matricula}</td>
+					<td><a href="/tcc/alunos/selecionarAluno?id=${aluno.id}">Alterar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

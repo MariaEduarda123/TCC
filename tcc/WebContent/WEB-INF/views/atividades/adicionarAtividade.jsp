@@ -24,6 +24,10 @@
 		</div>
 		
 		<div>
+			<label>Turma: <input type="text" name="turma"></label>
+		</div>
+		
+		<div>
 			 <input type="submit" value="Registrar Atividade">
 		</div>
 </form>

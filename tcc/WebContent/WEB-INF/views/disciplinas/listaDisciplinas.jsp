@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Disciplinas</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
 </head>
 <body>
 <c:import url="../menu.jsp"></c:import>

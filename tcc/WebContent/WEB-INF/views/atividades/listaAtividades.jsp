@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Atividades</title>
+<link rel="stylesheet" type="text/css" href="../css/css.css">
 </head>
 <body>
 	<c:import url="../menu.jsp"></c:import>
 
-	<table>
+	<table id="customers" style="width:400px; margin: 0 auto;">
 		<thead>
 			<tr>
 				<th>Descrição</th>
