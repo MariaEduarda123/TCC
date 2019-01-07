@@ -28,7 +28,7 @@
 					<td>${atividade.descricao}</td>
 					<td>${atividade.turma}</td>
 					<td>${atividade.dataAplicacao.time }</td>
-					<td>${atividade.dataDevolucao.tima }</td>
+					<td>${atividade.dataDevolucao.time }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

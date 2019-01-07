@@ -12,11 +12,11 @@ import models.Aluno;
 
 public class AlunoDAO {
 	private Connection connection;
-	
-	public AlunoDAO () {
+
+	public AlunoDAO() {
 		connection = ConnectionFactory.getConnetion();
 	}
-	
+
 	public boolean adicionar(Aluno aluno) {
 
 		String sql = "insert into alunos (nome, matricula) values (?, ?);";
@@ -37,8 +37,8 @@ public class AlunoDAO {
 
 		return true;
 	}
-	
-	public List<Aluno> getLista(){
+
+	public List<Aluno> getLista() {
 		try {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
@@ -47,31 +47,31 @@ public class AlunoDAO {
 
 			while (rs.next()) {
 				Aluno aluno = new Aluno();
+				aluno.setId(rs.getInt("id"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setMatricula(rs.getString("matricula"));
 
 				alunos.add(aluno);
 			}
-			
+
 			rs.close();
 			stmt.close();
-			
+
 			return alunos;
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
 	}
 
-
 	public boolean alterar(Aluno aluno) {
-		String sql = "update aluno set nome=?, matricula=?, turma=? where id=?;";
+		String sql = "update alunos set nome=?, matricula=? where id=?;";
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.setString(1, aluno.getNome());
 			stmt.setString(2, aluno.getMatricula());
-//			stmt.setStrig(3, aluno.getTurmas());
+			stmt.setInt(3, aluno.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -79,17 +79,17 @@ public class AlunoDAO {
 			return false;
 		}
 		return true;
-}
-	
+	}
+
 	public void remover(Aluno aluno) {
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from alunos where id=?;");
-			
-			stmt.setLong(1, aluno.getID());
-			
+
+			stmt.setLong(1, aluno.getId());
+
 			stmt.execute();
 			stmt.close();
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -97,28 +97,29 @@ public class AlunoDAO {
 	}
 
 	public Aluno getAlunoByID(Long id) {
-		
+
 		try {
 
 			Aluno aluno = null;
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from alunos where id=?;");
+			PreparedStatement stmt = (PreparedStatement) this.connection
+					.prepareStatement("select * from alunos where id=?;");
 			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				
+
 				aluno = new Aluno();
-				aluno.setID(rs.getInt("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setMatricula(rs.getString("matricula"));
-				
+
 			}
-			
+
 			rs.close();
 			stmt.close();
-			
+
 			return aluno;
-			
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -126,4 +127,3 @@ public class AlunoDAO {
 	}
 
 }
-	

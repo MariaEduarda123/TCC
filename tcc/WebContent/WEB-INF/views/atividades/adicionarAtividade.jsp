@@ -24,7 +24,7 @@
 		</div>
 		
 		<div>
-			<label>Turma: <input type="text" name="turma"></label>
+			<label>Turma: <input type="text" name="turma.id"></label>
 		</div>
 		
 		<div>

@@ -13,5 +13,7 @@
     	<li><a href="/tcc/professores/">Listar Professores</a></li>
     	<li><a href="/tcc/turmas/adicionarTurma/">Adicionar Turma</a></li>
     	<li><a href="/tcc/turmas/">Listar Turmas</a></li>
+    	<li><a href="/tcc/disciplinas/adicionarDisciplina/">Adicionar Disciplina</a></li>
+    	<li><a href="/tcc/disciplinas/">Listar Disciplinas</a></li>
     </ul>
 </nav>

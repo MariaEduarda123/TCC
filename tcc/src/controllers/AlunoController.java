@@ -51,7 +51,7 @@ public class AlunoController {
 	public ModelAndView selecionar (Aluno aluno) {
 		System.out.println("chamou o método selecionar");
 		AlunoDAO alunoDAO = new AlunoDAO();
-		aluno = alunoDAO.getAlunoByID((long) aluno.getID());
+		aluno = alunoDAO.getAlunoByID((long) aluno.getId());
 		
 		ModelAndView model = new ModelAndView("alunos/alterarAluno");
 		model.addObject("aluno", aluno);
@@ -59,7 +59,7 @@ public class AlunoController {
 		return model;
 	}
 	
-	@PostMapping("/alterarAluno")
+	@PostMapping("/alterar")
 	public String alterar(Aluno aluno) {
 		System.out.println("chamou o método alterar");
 		System.out.println(aluno);

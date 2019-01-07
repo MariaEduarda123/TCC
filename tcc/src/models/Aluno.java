@@ -8,12 +8,12 @@ public class Aluno {
 	private String Matricula;
 	private List<Turma> turmas;
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
-	public void setID(int iD) {
-		id = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {

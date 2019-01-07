@@ -30,8 +30,8 @@
 				<tr>
 
 					<td>${turma.nome}</td>
-					<td>${turma.disciplina}</td>
-					<td>${turma.professor}</td>
+					<td>${turma.disciplina.nome}</td>
+					<td>${turma.professor.nome}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

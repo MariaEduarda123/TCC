@@ -18,8 +18,10 @@ import models.Turma;
 public class TurmaController {
 	
 	@RequestMapping("/adicionarTurma")
-	public String form() {
-		return "turmas/adicionarTurma";
+	public ModelAndView form() {
+		ModelAndView model = new ModelAndView("turmas/adicionarTurma");
+		model.addObject("professores", new ProfessorDAO().getLista());
+		return model;
 	}
 	
 	@PostMapping

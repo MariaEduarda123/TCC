@@ -51,6 +51,8 @@ private Connection connection;
 				Turma turma = new Turma();
 				turma.setNome(rs.getString("nome"));
 
+				//TODO Pegar dados do professor e disciplina
+				
 				turmas.add(turma);
 			}
 			rs.close();
