@@ -22,25 +22,6 @@
 		</div>
 
 		<div>
-			<label>Turma 1: <input type="text" name="turma"></label>
-		</div>
-
-		<div>
-			<label>Turma 2: <input type="text" name="turma"></label>
-		</div>
-		<div>
-			<label>Turma 3: <input type="text" name="turma"></label>
-		</div>
-		<div>
-			<label>Turma 4: <input type="text" name="turma"></label>
-		</div>
-		<div>
-			<label>Turma 5: <input type="text" name="turma"></label>
-		</div>
-
-
-
-		<div>
 			<input type="submit" value="Adicionar Professor">
 		</div>
 	</form>

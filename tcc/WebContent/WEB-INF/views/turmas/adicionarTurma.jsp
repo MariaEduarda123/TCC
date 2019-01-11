@@ -19,7 +19,7 @@
 			<label>Nome: <input type="text" name="nome"></label>
 		</div>
 		<div>
-			<select name="id">
+			<select name="disciplina.id">
 				<option value="">Selecione uma disciplina</option>
 				<c:forEach var="disciplina" items="${disciplinas}">
 					<option value="${disciplina.id }">${disciplina.nome }</option>

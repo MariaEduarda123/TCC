@@ -48,6 +48,7 @@ private Connection connection;
 
 			while (rs.next()) {
 				Professor professor = new Professor();
+				professor.setId(rs.getInt("id"));
 				professor.setNome(rs.getString("nome"));
 				professor.setMatricula(rs.getString("matricula"));
 
@@ -62,13 +63,13 @@ private Connection connection;
 
 	}
 	
-	public boolean alterar(Professor professor) {
-		String sql = "update aluno set nome=?, matricula=?, turma=? where id=?;";
+	public boolean alterar (Professor professor) {
+		String sql = "update professores set nome=?, matricula=? where id=?;";
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.setString(1, professor.getNome());
 			stmt.setString(2, professor.getMatricula());
-//			stmt.setString(3, professor.getTurmas());
+			stmt.setInt(3, professor.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -96,7 +97,7 @@ private Connection connection;
 		try {
 
 			Professor professor = null;
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from alunos where id=?;");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from professores where id=?;");
 			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
 

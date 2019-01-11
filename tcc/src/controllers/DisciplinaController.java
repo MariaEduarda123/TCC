@@ -41,19 +41,11 @@ public class DisciplinaController {
 		return model;
 	}
 	
-	@RequestMapping("/remover")
-	public ModelAndView remover(Disciplina disciplina) {
-		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-		disciplinaDAO.remover(disciplina);
-		
-		return listar();
-	}
-	
-	@RequestMapping("/selecionar")
+	@RequestMapping("/selecionarDisciplina")
 	public ModelAndView selecionar (Disciplina disciplina) {
 		System.out.println("chamou o método selecionar");
 		DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-		disciplina = disciplinaDAO.getDisciplinaByID((long) disciplina.getID());
+		disciplina = disciplinaDAO.getDisciplinaByID((long) disciplina.getId());
 		
 		ModelAndView model = new ModelAndView("disciplinas/alterarDisciplina");
 		model.addObject("disciplina", disciplina);

@@ -39,14 +39,7 @@ public class AlunoController {
 		return model;
 	}
 	
-	@RequestMapping("/remover")
-	public ModelAndView remover(Aluno aluno) {
-		AlunoDAO alunoDAO = new AlunoDAO();
-		alunoDAO.remover(aluno);
-		
-		return listar();
-	}
-	
+
 	@RequestMapping("/selecionarAluno")
 	public ModelAndView selecionar (Aluno aluno) {
 		System.out.println("chamou o método selecionar");

@@ -41,15 +41,7 @@ public class ProfessorController {
 		return model;
 	}
 	
-	@RequestMapping("/remover")
-	public ModelAndView remover(Professor professor) {
-		ProfessorDAO professorDAO = new ProfessorDAO();
-		professorDAO.remover(professor);
-		
-		return listar();
-	}
-	
-	@RequestMapping("/selecionar")
+	@RequestMapping("/selecionarProfessor")
 	public ModelAndView selecionar (Professor professor) {
 		System.out.println("chamou o método selecionar");
 		ProfessorDAO professorDAO = new ProfessorDAO();
@@ -58,7 +50,7 @@ public class ProfessorController {
 		ModelAndView model = new ModelAndView("professores/alterarProfessor");
 		model.addObject("professor", professor);
 		
-		return model;
+		return model;		
 	}
 	
 	@PostMapping("/alterar")

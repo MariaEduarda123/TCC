@@ -48,6 +48,7 @@ private Connection connection;
 
 			while (rs.next()) {
 				Disciplina disciplina = new Disciplina();
+				disciplina.setId(rs.getInt("id"));
 				disciplina.setNome(rs.getString("nome"));
 
 				disciplinas.add(disciplina);
@@ -65,10 +66,11 @@ private Connection connection;
 	}
 	
 	public boolean alterar(Disciplina disciplina) {
-		String sql = "update disciplina set nome=? where id=?;";
+		String sql = "update disciplinas set nome=? where id=?;";
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.setString(1, disciplina.getNome());
+			stmt.setInt(2, disciplina.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -81,7 +83,7 @@ private Connection connection;
 	public void remover(Disciplina disciplina) {
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from disciplinas where id=?;");
-			stmt.setLong(1, disciplina.getID());
+			stmt.setLong(1, disciplina.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -94,14 +96,14 @@ private Connection connection;
 		try {
 
 			Disciplina disciplina = null;
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from alunos where id=?;");
+			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("select * from disciplinas where id=?;");
 			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				
 				disciplina = new Disciplina();
-				disciplina.setID(rs.getInt("id"));
+				disciplina.setId(rs.getInt("id"));
 				disciplina.setNome(rs.getString("nome"));
 				
 			}

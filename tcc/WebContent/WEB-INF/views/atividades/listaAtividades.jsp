@@ -17,8 +17,7 @@
 			<tr>
 				<th>Descrição</th>
 				<th>Turma</th>
-				<th>Data do emprestimo</th>
-				<th>Devolução</th>
+				<th>Data de Entrega</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,9 +27,8 @@
 				<tr>
 
 					<td>${atividade.descricao}</td>
-					<td>${atividade.turma}</td>
-					<td>${atividade.dataAplicacao.time }</td>
-					<td>${atividade.dataDevolucao.tima }</td>
+					<td>${atividade.turma.nome}</td>
+					<td>${atividade.dataEntrega.time}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

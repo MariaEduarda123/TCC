@@ -1,36 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Alterar Turma</title>
+<title>Alterar Professor</title>
 </head>
 <body>
 
 	<c:import url="../menu.jsp"></c:import>
 
 	<h1>Alterar Turma</h1>
-	<form action="/tcc/turmas/alterar" method="post">
-	
+	<form action="/tcc/professores/alterar" method="post">
+
 		<div>
-			<label>ID: <input readonly="readonly" type="hidden" name="id" value="${turma.id }"></label>
+			<label>ID: <input readonly="readonly" type="hidden" name="id"
+				value="${professor.id }"></label>
 		</div>
-	
+
 		<div>
-			<label>Nome: <input type="text" name="nome" value="${turma.nome }"></label>
+			<label>Nome: <input type="text" name="nome"
+				value="${turma.nome }"></label>
 		</div>
-		
 		<div>
-			<label>Disciplina: <input type="text" name="disciplina" value="${turma.disciplina }"></label>
+			<select name="disciplina.id">
+				<option value="${turma.disciplina.nome }"></option>
+				<c:forEach var="disciplina" items="${disciplinas}">
+					<option value="${turma.disciplina.id }">${turma.disciplina.nome }</option>
+				</c:forEach>
+			</select>
 		</div>
-		
 		<div>
-			<label>Professor: <input type="text" name="professor" value="${turma.professor }"></label>
+			<select name="professor.id">
+				<option value="${turma.professor.nome }"></option>
+				<c:forEach var="professor" items="${professores}">
+					<option value="${professor.id }">${professor.nome }</option>
+				</c:forEach>
+			</select>
 		</div>
-		
+
 		<div>
-			 <input type="submit" value="Alterar">
+			<input type="submit" value="Alterar">
 		</div>
 	</form>
 

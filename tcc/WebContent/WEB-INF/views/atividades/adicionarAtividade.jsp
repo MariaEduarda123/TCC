@@ -20,11 +20,16 @@
 		</div>
 		
 		<div>
-			<label>Data de Entrega: <input type="text" name="dataTexto"></label>
+			<label>Data de Entrega: <input type="text" name="dataEntrega"></label>
 		</div>
 		
 		<div>
-			<label>Turma: <input type="text" name="turma.id"></label>
+			<select name="turma.id">
+				<option value="">Selecione uma turma</option>
+				<c:forEach var="turma" items="${turmas}">
+					<option value="${turma.id }">${turma.nome }</option>
+				</c:forEach>
+			</select>
 		</div>
 		
 		<div>

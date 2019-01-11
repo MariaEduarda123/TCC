@@ -5,12 +5,12 @@ public class Turma {
 	private Professor professor;
 	private Disciplina disciplina;
 
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
-	public void setID(int iD) {
-		id = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {

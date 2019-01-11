@@ -1,15 +1,30 @@
 package models;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Entrega {
-	private String Data;
+	private int id;
+	@DateTimeFormat(pattern="dd/mm/yyyy")
+	private Calendar DataDeEntrega;
 	private Atividade atividade;
 	private Aluno aluno;
 
-	public String getData() {
-		return Data;
+	public Calendar getDataDeEntrega() {
+		return DataDeEntrega;
+	}
+	public int getId() {
+		return id;
 	}
 
-	public void setData(String data) {
-		Data = data;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setDataDeEntrega(Calendar dataDeEntrega) {
+		DataDeEntrega = dataDeEntrega;
 	}
 
 	public Atividade getAtividade() {

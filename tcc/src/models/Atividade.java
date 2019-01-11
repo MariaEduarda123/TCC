@@ -3,9 +3,12 @@ package models;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Atividade {
 	private int id;
 	private String Descricao;
+	@DateTimeFormat(pattern="dd/mm/yyyy")
 	private Calendar DataEntrega;
 	private Turma turma;
 	private List<Entrega> entregas;

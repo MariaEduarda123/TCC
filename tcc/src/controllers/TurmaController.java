@@ -46,21 +46,13 @@ public class TurmaController {
 		return model;
 	}
 	
-	@RequestMapping("/remover")
-	public ModelAndView remover(Turma turma) {
-		TurmaDAO turmaDAO = new TurmaDAO();
-		turmaDAO.remover(turma);
-		
-		return listar();
-	}
-
-	@RequestMapping("/selecionar")
+	@RequestMapping("/selecionarTurma")
 	public ModelAndView selecionar (Turma turma) {
 		System.out.println("chamou o método selecionar");
 		TurmaDAO turmaDAO = new TurmaDAO();
-		turma = turmaDAO.getTurmaByID((long) turma.getID());
+		turma = turmaDAO.getTurmaByID(turma.getId());
 		
-		ModelAndView model = new ModelAndView("turmas/alterarTurmar");
+		ModelAndView model = new ModelAndView("turmas/alterarTurma");
 		model.addObject("turma", turma);
 		
 		return model;

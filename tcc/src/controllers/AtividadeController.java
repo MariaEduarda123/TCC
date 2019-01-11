@@ -8,16 +8,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import daos.AlunoDAO;
 import daos.AtividadeDAO;
+import daos.EntregaDAO;
+import daos.TurmaDAO;
+import models.Aluno;
 import models.Atividade;
+import models.Entrega;
+import models.Turma;
 
 @Controller
 @RequestMapping("/atividades")
 public class AtividadeController {
 
 	@RequestMapping("/adicionarAtividade")
-	public String form() {
-		return "atividades/adicionarAtividade";
+	public ModelAndView form() {
+		
+		ModelAndView model = new ModelAndView("atividades/adicionarAtividade");
+		TurmaDAO turmaDAO = new TurmaDAO();
+		List<Turma> turmalista = turmaDAO.getLista();
+		
+		model.addObject("turmas", turmalista);
+		
+		return model;
 	}
 	
 	@PostMapping
@@ -29,23 +42,64 @@ public class AtividadeController {
 		return "redirect:atividades";
 	}
 	
+	@GetMapping("/listaAtividadesParaFazer")
+	public ModelAndView listarAbertos() {
+		AtividadeDAO atividadeDAO = new AtividadeDAO();
+		List<Atividade> lista = atividadeDAO.getLista();
+		ModelAndView model = new ModelAndView("atividades/listaAtividadesParaFazer");
+		model.addObject("atividades", lista);
+
+		return model;
+	}
+
 	@GetMapping
 	public ModelAndView listar() {
 		AtividadeDAO atividadeDAO = new AtividadeDAO();
 		List<Atividade> lista = atividadeDAO.getLista();
 		ModelAndView model = new ModelAndView("atividades/listaAtividades");
+		TurmaDAO turmaDAO = new TurmaDAO();
+		List<Turma> turmalista = turmaDAO.getLista();
+		EntregaDAO entregadao = new EntregaDAO();
+		entregadao.getLista();
 		model.addObject("atividades", lista);
+		model.addObject("turmas", turmalista);
+		
+		return model;
+	}
 
+	@RequestMapping("/selecionarAtividade")
+	public ModelAndView selecionar (int id) {
+		System.out.println("chamou o método selecionar");
+		AtividadeDAO atividadeDAO = new AtividadeDAO();
+		Atividade atividade = atividadeDAO.getAtividadeByID(id);
+		ModelAndView model = new ModelAndView("atividades/entregarAtividade");
+		model.addObject("atividade", atividade);
+		
 		return model;
 	}
 	
-	@RequestMapping("/remover")
-	public ModelAndView remover(Atividade atividade) {
-		AtividadeDAO atividadeDAO = new AtividadeDAO();
-		atividadeDAO.remover(atividade);
+	@PostMapping("/entregar")
+	public String entrega(long aluno_id, int atividade_id){
 		
-		return listar();
-	}
+		Aluno aluno = new Aluno();
+		Atividade atividade = new Atividade();
+		Entrega entrega = new Entrega();
+		
+		AlunoDAO alunoDAO = new AlunoDAO();
+		AtividadeDAO atividadeDAO = new AtividadeDAO();
+		EntregaDAO entregaDAO = new EntregaDAO();
+		
+		aluno = alunoDAO.getAlunoByID(aluno_id);
+		atividade = atividadeDAO.getAtividadeByID(atividade_id);
+		
+		entrega.setAluno(aluno);		
+		entrega.setAtividade(atividade);
+		
+		atividadeDAO.entregar(atividade);
+		
+		return "redirect:/atividade";
+
+}
 
 	
 }

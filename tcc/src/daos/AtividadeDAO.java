@@ -14,6 +14,7 @@ import models.Turma;
 import models.Aluno;
 import models.Atividade;
 import models.Disciplina;
+import models.Entrega;
 import models.Professor;
 import models.Turma;
 
@@ -33,12 +34,11 @@ public class AtividadeDAO {
 			
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 
-			Calendar data = Calendar.getInstance();
-			Long dataT = data.getTimeInMillis();
+			Long dataT = atividade.getDataEntrega().getTimeInMillis();
 
 			stmt.setString(1, atividade.getDescricao());
 			stmt.setDate(2, new java.sql.Date(dataT));
-			stmt.setLong(3, atividade.getTurma().getID());
+			stmt.setLong(3, atividade.getTurma().getId());
 
 			stmt.execute();
 			stmt.close();
@@ -61,8 +61,11 @@ public class AtividadeDAO {
 			while (rs.next()) {
 
 				Atividade atividade = new Atividade();
-				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
+				atividade.setId(rs.getInt("id"));
+				atividade.setDescricao(rs.getString("descricao"));
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getInt("turma_id"));
 				atividade.setTurma(turma);
+				
 
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("dataEntrega"));
@@ -103,7 +106,7 @@ public class AtividadeDAO {
 				Calendar dataEntregao = Calendar.getInstance();
 				dataEntregao.setTime(rs.getDate("dataEntrega"));
 //				atividade.setDataEntrega("dataEntrega");
-				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getInt("id"));
 				atividade.setTurma(turma);
 
 				result.add(atividade);
@@ -129,7 +132,7 @@ public class AtividadeDAO {
 			while (rs.next()) {
 
 				Atividade atividade = new Atividade();
-				Turma turma = new TurmaDAO().getTurmaByID(rs.getLong("id"));
+				Turma turma = new TurmaDAO().getTurmaByID(rs.getInt("turma_id"));
 				Calendar data = Calendar.getInstance();
 				data.setTime(rs.getDate("dataEntrega"));
 //				atividade.setDataEmprestimo(data);
@@ -146,19 +149,60 @@ public class AtividadeDAO {
 
 		return atividades;
 	}
-		
-		public void remover (Atividade atividade) {
+
+		public Atividade getAtividadeByID(int id) {
+
 			try {
-				PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from atividades where id=?;");
-				stmt.setLong(1, atividade.getId());
-				stmt.execute();
+
+				Atividade atividade = null;
+				PreparedStatement stmt = (PreparedStatement) this.connection
+						.prepareStatement("select * from atividades where id=?;");
+				stmt.setInt(1, id);
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+
+					atividade = new Atividade();
+					atividade.setId(rs.getInt("id"));
+					Calendar data = Calendar.getInstance();
+					data.setTime(rs.getDate("dataEntrega"));
+					atividade.setDataEntrega(data);
+					Turma turma = new TurmaDAO().getTurmaByID(rs.getInt("turma_id"));
+					atividade.setTurma(turma);
+					atividade.setDescricao(rs.getString("descricao"));
+					//Aqui precisa setar o resto se o "importante" � s� o ID?
+				}
+
+				rs.close();
 				stmt.close();
+
+				return atividade;
+
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
 
 		}
 
-	
+		public boolean entregar(Atividade atividade) {
 
+			Entrega entrega = null;
+			
+			String sql = "update atividades set dataEntrega=? where aluno_id=? and atividade_id=?;";
+			try {
+				PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+				stmt.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));			
+				stmt.setLong(2, entrega.getAluno().getId());
+				stmt.setLong(3, entrega.getAtividade().getId());
+
+				stmt.execute();
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+	}
+
+		
 }
