@@ -7,16 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Lista de Professores</title>
-<link rel="stylesheet" type="text/css" href="css/css.css">
+<link href="/tcc/resources/css/estilo.css" rel="stylesheet">
 </head>
-<body>
-
+<body style="background-image: url(http://luzdaserra.net/wp-content/uploads/2017/05/fundo-cinza.jpg)">
 	<c:import url="../menu.jsp"></c:import>
-	<table border=1>
+	
+	<h1 class="lista">Lista de Professores</h1>
+	
+	<table style="background-color: #FFFFFF">
 		<thead>
 			<tr>
 				<th>Nome</th>
 				<th>Matricula</th>
+				<th>Alterar</th>
 			</tr>
 		</thead>
 		<tbody>

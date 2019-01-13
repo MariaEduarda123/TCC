@@ -7,25 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Adicionar Aluno</title>
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 	<c:import url="../menu.jsp"></c:import>
 
-<form action="/tcc/alunos"  method="post">
-
 	<h1>Adicionar Aluno</h1>
-	
-		<div>
-			<label>Nome: <input type="text" name="nome"></label>
-		</div>
+
+	<form action="/tcc/alunos"  method="post">
+			
+		<label>Nome:</label>
+		<input type="text" name="nome"> 
+			
+		<label>Matricula:</label>
+		<input type="text" name="matricula"> 
+
+		<input class="button" type="submit" value="Adicionar Aluno"> <br>
 		
-		<div>
-			<label>Matricula: <input type="text" name="matricula"></label>
-		</div>
-		
-		<div>
-			 <input type="submit" value="Adicionar Aluno">
-		</div>
-</form>
+	</form>
 </body>
 </html>

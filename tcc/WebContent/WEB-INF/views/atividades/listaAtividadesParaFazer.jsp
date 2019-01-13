@@ -6,16 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Atividades Para Fazer</title>
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
+<body style="background-image: url(http://luzdaserra.net/wp-content/uploads/2017/05/fundo-cinza.jpg)">
 	<c:import url="../menu.jsp"></c:import>
 
-	<table>
+	<h1 class="lista">Atividades Para Fazer</h1>
+
+	<table style="background-color: #FFFFFF">
 		<thead>
 			<tr>
 				<th>Descrição</th>
 				<th>Turma</th>
 				<th>Data de Entrega</th>
+				<th>Entregar</th>
 			</tr>
 		</thead>
 		<tbody>

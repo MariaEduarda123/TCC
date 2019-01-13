@@ -78,18 +78,6 @@ private Connection connection;
 			return false;
 		}
 		return true;
-}
-	
-	public void remover(Disciplina disciplina) {
-		try {
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from disciplinas where id=?;");
-			stmt.setLong(1, disciplina.getId());
-			stmt.execute();
-			stmt.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
 	}
 
 	public Disciplina getDisciplinaByID(long id) {

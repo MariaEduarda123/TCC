@@ -7,18 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Disciplinas</title>
-<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
+<body style="background-image: url(http://luzdaserra.net/wp-content/uploads/2017/05/fundo-cinza.jpg)">
 	<c:import url="../menu.jsp"></c:import>
 
-	<h1>Lista de Disciplinas</h1>
+	<h1 class="lista">Lista de Disciplinas</h1>
 
-	<table border=1>
+	<table style="background-color: #FFFFFF">
 		<thead>
 			<tr>
 				<th>Nome</th>
-
+				<th>Alterar</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -95,11 +95,10 @@ public class AtividadeController {
 		entrega.setAluno(aluno);		
 		entrega.setAtividade(atividade);
 		
-		atividadeDAO.entregar(atividade);
+		entregaDAO.entregar(entrega);
 		
-		return "redirect:/atividade";
+		return "redirect:/atividades";
 
 }
-
 	
 }

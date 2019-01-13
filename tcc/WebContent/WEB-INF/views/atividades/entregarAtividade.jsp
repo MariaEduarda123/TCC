@@ -7,39 +7,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 <title>Entregar atividade</title>
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 
 	<c:import url="../menu.jsp"></c:import>
 
 	<h1>Entregar Atividade</h1>
+	
 	<form action="/tcc/atividades/entregar" method="post">
 
-		<div>
-			<label>ID: <input readonly="readonly" type="hidden" name="id"
-				value="${atividade.id }"></label>
-		</div>
-
-		<div>
-			<label>Descrição: <input type="text" name="descricao"
-				value="${atividade.descricao}"></label>
-		</div>
-
-		<div>
-			<label>Turma: <input type="text" name="turma"
-				value="${atividade.turma.nome}"></label>
-		</div>		
+			<label>ID:</label> </br>
+			 <input readonly="readonly" type="hidden" name="id" value="${entrega.atividade.id }">
 		
-		<div>
-			<label>Aluno: <input type="text" name="aluno"
-				value="${entrega.aluno.id}"></label>
-		</div>		
+			<label>Descrição:</label>
+			 <input type="text" name="descricao" value="${entrega.atividade.descricao}">
 		
-
-		<div>
-			<input type="submit" value="Entregar">
-		</div>
+			<label>Aluno:</label>
+			 <input type="text" name="aluno" value="${entrega.aluno.nome}">
+		
+			<input class="button" type="submit" value="Entregar">
+		
 	</form>
 
 </body>

@@ -6,31 +6,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 <meta charset="UTF-8">
 <title>Alterar Aluno</title>
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 
 	<c:import url="../menu.jsp"></c:import>
-
+	
 	<h1>Alterar Aluno</h1>
+	
 	<form action="/tcc/alunos/alterar" method="post">
-	
-		<div>
-			<label>ID: <input readonly="readonly" type="hidden" name="id" value="${aluno.id }"></label>
-		</div>
-	
-		<div>
-			<label>Nome: <input type="text" name="nome" value="${aluno.nome }"></label>
-		</div>
-		
-		<div>
-			<label>Matricula: <input type="text" name="matricula" value="${aluno.matricula }"></label>
-		</div>
-		
-		<div>
-			 <input type="submit" value="Alterar">
-		</div>
+
+			<label>ID:</label> </br>
+			 <input readonly="readonly" type="hidden" name="id" value="${aluno.id }">
+
+			<label>Nome:</label>
+			 <input type="text" name="nome" value="${aluno.nome }">
+
+			<label>Matricula:</label> 
+			 <input type="text" name="matricula" value="${aluno.matricula }">
+
+			 <input class="button" type="submit" value="Alterar">
+
 	</form>
 
 </body>

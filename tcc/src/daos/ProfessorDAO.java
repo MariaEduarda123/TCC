@@ -78,20 +78,6 @@ private Connection connection;
 		}
 		return true;
 }
-	
-	public void remover(Professor professor) {
-		try {
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from professores where id=?;");
-			stmt.setLong(1, professor.getId());
-			
-			stmt.execute();
-			stmt.close();
-			
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
-	}
 
 	public Professor getProfessorByID(long id) {
 		try {

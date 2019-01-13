@@ -3,31 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/tcc/resources/css/estilo.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Alterar Professor</title>
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 
 	<c:import url="../menu.jsp"></c:import>
 
 	<h1>Alterar Professor</h1>
+	
 	<form action="/tcc/professores/alterar" method="post">
 	
-		<div>
-			<label>ID: <input readonly="readonly" type="hidden" name="id" value="${professor.id }"></label>
-		</div>
-	
-		<div>
-			<label>Nome: <input type="text" name="nome" value="${professor.nome }"></label>
-		</div>
+			<label>ID:</label></br>
+			 <input readonly="readonly" type="hidden" name="id" value="${professor.id }">
 		
-		<div>
-			<label>Matricula: <input type="text" name="matricula" value="${professor.matricula }"></label>
-		</div>
+			<label>Nome:</label>
+			 <input type="text" name="nome" value="${professor.nome }">
 		
-		<div>
-			 <input type="submit" value="Alterar">
-		</div>
+			<label>Matricula:</label>
+			 <input type="text" name="matricula" value="${professor.matricula }">
+		
+			 <input class="button" type="submit" value="Alterar">
+		
 	</form>
 
 

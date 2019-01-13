@@ -183,26 +183,5 @@ public class AtividadeDAO {
 			}
 
 		}
-
-		public boolean entregar(Atividade atividade) {
-
-			Entrega entrega = null;
-			
-			String sql = "update atividades set dataEntrega=? where aluno_id=? and atividade_id=?;";
-			try {
-				PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
-				stmt.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));			
-				stmt.setLong(2, entrega.getAluno().getId());
-				stmt.setLong(3, entrega.getAtividade().getId());
-
-				stmt.execute();
-				stmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-			return true;
-	}
-
 		
 }

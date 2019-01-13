@@ -7,36 +7,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Adicionar Turma</title>
+<link href="/tcc/resources/css/estilo.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 	<c:import url="../menu.jsp"></c:import>
+
+	<div class="caixa">
+	<h1>Adicionar Turma</h1>
 
 	<form action="/tcc/turmas" method="post">
 
-		<h1>Adicionar Turma</h1>
+			<label>Nome:</label>
+			 <input type="text" name="nome">
 
-		<div>
-			<label>Nome: <input type="text" name="nome"></label>
-		</div>
-		<div>
+			<label>Disciplina:</label>
 			<select name="disciplina.id">
 				<option value="">Selecione uma disciplina</option>
 				<c:forEach var="disciplina" items="${disciplinas}">
 					<option value="${disciplina.id }">${disciplina.nome }</option>
 				</c:forEach>
 			</select>
-		</div>
-		<div>
+
+			<label>Professor:</label>
 			<select name="professor.id">
 				<option value="">Selecione um professor</option>
 				<c:forEach var="professor" items="${professores}">
 					<option value="${professor.id }">${professor.nome }</option>
 				</c:forEach>
 			</select>
-		</div>
-		<div>
-			<input type="submit" value="Adicionar Turma">
-		</div>
+
+			<input class="button" type="submit" value="Adicionar Turma">
+
 	</form>
+	</div>
 </body>
 </html>

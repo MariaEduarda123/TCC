@@ -46,5 +46,23 @@ public class EntregaDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-}
+	}
+	
+	public boolean entregar(Entrega entrega) {
+		
+		String sql = "update atividades set dataEntrega=? where aluno_id=? and atividade_id=?;";
+		try {
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			stmt.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));			
+			stmt.setLong(2, entrega.getAluno().getId());
+			stmt.setLong(3, entrega.getAtividade().getId());
+
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }

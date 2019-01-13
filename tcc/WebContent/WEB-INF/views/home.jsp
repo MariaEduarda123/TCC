@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
 <body>
 
 	<c:import url="menu.jsp"></c:import>
 
-	<h1>Bem Vindo!</h1>
+	<h1 class="lista">Bem Vindo!</h1>
 </body>
 </html>

@@ -81,21 +81,6 @@ public class AlunoDAO {
 		return true;
 	}
 
-	public void remover(Aluno aluno) {
-		try {
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("delete from alunos where id=?;");
-
-			stmt.setLong(1, aluno.getId());
-
-			stmt.execute();
-			stmt.close();
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
-	}
-
 	public Aluno getAlunoByID(Long id) {
 
 		try {

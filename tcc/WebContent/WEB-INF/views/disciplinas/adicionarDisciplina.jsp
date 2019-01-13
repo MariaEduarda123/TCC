@@ -7,21 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Registrar Disciplinas</title>
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
-<c:import url="../menu.jsp"></c:import>
-
-<form action="/tcc/disciplinas"  method="post">
-
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
+	<c:import url="../menu.jsp"></c:import>
+	
 	<h1>Registrar Disciplina</h1>
 	
-		<div>
-			<label>Nome: <input type="text" name="nome"></label>
-		</div>
-		
-		<div>
-			 <input type="submit" value="Registrar Disciplina">
-		</div>
+	<form action="/tcc/disciplinas"  method="post">
+
+			<label>Nome:</label>
+			 <input type="text" name="nome">
+			
+			 <input class="button" type="submit" value="Registrar Disciplina">
+
 </form>
 </body>
 </html>

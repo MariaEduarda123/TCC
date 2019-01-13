@@ -7,12 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Atividades</title>
-<link rel="stylesheet" type="text/css" href="../css/css.css">
+<link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
+<body style="background-image: url(http://luzdaserra.net/wp-content/uploads/2017/05/fundo-cinza.jpg)">
 	<c:import url="../menu.jsp"></c:import>
 
-	<table id="customers" style="width:400px; margin: 0 auto;">
+	<h1 class="lista">Lista  de Atividades</h1>
+
+	<table style="background-color: #FFFFFF">
 		<thead>
 			<tr>
 				<th>Descrição</th>
