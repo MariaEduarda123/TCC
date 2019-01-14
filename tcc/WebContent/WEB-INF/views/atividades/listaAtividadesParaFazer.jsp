@@ -18,7 +18,7 @@
 			<tr>
 				<th>Descrição</th>
 				<th>Turma</th>
-				<th>Data de Entrega</th>
+				<th>Data para Entrega</th>
 				<th>Entregar</th>
 			</tr>
 		</thead>
@@ -31,7 +31,7 @@
 					<td>${atividade.descricao}</td>
 					<td>${atividade.turma.nome}</td>
 					<td>${atividade.dataEntrega.time }</td>
-					<td><a href="/tcc/atividades/selecionarAtividade?id=${atividade.id}">Entregar atividade</a></td>
+					<td><a href="/tcc/entregas/entregarAtividade?id=${atividade.id}">Entregar atividade</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

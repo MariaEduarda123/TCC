@@ -18,6 +18,28 @@ public class EntregaDAO {
 	public EntregaDAO() {
 		connection = ConnectionFactory.getConnetion();
 	}
+	
+	public boolean adicionar(Entrega entrega) {
+
+		String sql = "insert into entregas (dataDaEntrega, atividade_id, aluno_id) values (?, ?, ?);";
+
+		try {
+			java.sql.PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setTimestamp(1, new java.sql.Timestamp(entrega.getDataDeEntrega().getTimeInMillis()));
+			stmt.setLong(2, entrega.getAtividade().getId());
+			stmt.setLong(3, entrega.getAluno().getId());
+
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
 
 	public List<Entrega> getLista() {
 		try {
@@ -28,14 +50,44 @@ public class EntregaDAO {
 
 			while (rs.next()) {
 				Entrega entrega = new Entrega();
-
+				entrega.setId(rs.getInt("id"));
 				Aluno aluno = new AlunoDAO().getAlunoByID(rs.getLong("aluno_id"));
 				entrega.setAluno(aluno);
 				Atividade atividade = new AtividadeDAO().getAtividadeByID(rs.getInt("atividade_id"));
 				entrega.setAtividade(atividade);
 				
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("dataEntrega"));
+				data.setTime(rs.getTimestamp("dataDaEntrega"));
+				entrega.setDataDeEntrega(data);
+
+				entregas.add(entrega);
+			}
+			rs.close();
+			stmt.close();
+			return entregas;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Entrega> getLista(Atividade atividade) {
+		try {
+
+			List<Entrega> entregas = new ArrayList<Entrega>();
+			PreparedStatement stmt = connection.prepareStatement("select * from entregas where atividade_id = ?;");
+			stmt.setLong(1, atividade.getId());
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Entrega entrega = new Entrega();
+				entrega.setId(rs.getInt("id"));
+				Aluno aluno = new AlunoDAO().getAlunoByID(rs.getLong("aluno_id"));
+				entrega.setAluno(aluno);
+				Atividade a = new AtividadeDAO().getAtividadeByID(rs.getInt("atividade_id"));
+				entrega.setAtividade(a);
+				
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getTimestamp("dataDaEntrega"));
 				entrega.setDataDeEntrega(data);
 
 				entregas.add(entrega);
@@ -50,7 +102,7 @@ public class EntregaDAO {
 	
 	public boolean entregar(Entrega entrega) {
 		
-		String sql = "update atividades set dataEntrega=? where aluno_id=? and atividade_id=?;";
+		String sql = "update atividades set dataDaEntrega=? where aluno_id=? and atividade_id=?;";
 		try {
 			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
 			stmt.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));			

@@ -29,7 +29,7 @@
 				<tr>
 					<td>${professor.nome}</td>
 					<td>${professor.matricula}</td>
-					<td><a href="/tcc/professores/selecionar?id=${professor.id}">Alterar</a></td>
+					<td><a href="/tcc/professores/selecionarProfessor?id=${professor.id}">Alterar</a></td>
 
 				</tr>
 			</c:forEach>

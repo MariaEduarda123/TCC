@@ -78,27 +78,4 @@ public class AtividadeController {
 		return model;
 	}
 	
-	@PostMapping("/entregar")
-	public String entrega(long aluno_id, int atividade_id){
-		
-		Aluno aluno = new Aluno();
-		Atividade atividade = new Atividade();
-		Entrega entrega = new Entrega();
-		
-		AlunoDAO alunoDAO = new AlunoDAO();
-		AtividadeDAO atividadeDAO = new AtividadeDAO();
-		EntregaDAO entregaDAO = new EntregaDAO();
-		
-		aluno = alunoDAO.getAlunoByID(aluno_id);
-		atividade = atividadeDAO.getAtividadeByID(atividade_id);
-		
-		entrega.setAluno(aluno);		
-		entrega.setAtividade(atividade);
-		
-		entregaDAO.entregar(entrega);
-		
-		return "redirect:/atividades";
-
-}
-	
 }

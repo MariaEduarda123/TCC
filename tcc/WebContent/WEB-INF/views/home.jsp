@@ -9,10 +9,10 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="/tcc/resources/css/estilo.css">
 </head>
-<body>
+<body style="background-image:url(https://i.pinimg.com/originals/84/10/e7/8410e732cb6fd804dd260a2c1afacaed.jpg)">
 
 	<c:import url="menu.jsp"></c:import>
 
-	<h1 class="lista">Bem Vindo!</h1>
+	<h1>Bem Vindo!</h1>
 </body>
 </html>

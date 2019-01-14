@@ -16,16 +16,16 @@
 
 	<h1>Entregar Atividade</h1>
 	
-	<form action="/tcc/atividades/entregar" method="post">
+	<form action="/tcc/entregas" method="post">
 
 			<label>ID:</label> </br>
-			 <input readonly="readonly" type="hidden" name="id" value="${entrega.atividade.id }">
+			 <input readonly="readonly" type="text" name="atividade.id" value="${atividade.id }">
 		
-			<label>Descrição:</label>
-			 <input type="text" name="descricao" value="${entrega.atividade.descricao}">
+			<label>Anexar arquivo:</label>
+			 <input type="text" name="descricao" value="${atividade.descricao}">
 		
 			<label>Aluno:</label>
-			 <input type="text" name="aluno" value="${entrega.aluno.nome}">
+			 <input type="text" name="aluno.id" value="${aluno.id}">
 		
 			<input class="button" type="submit" value="Entregar">
 		

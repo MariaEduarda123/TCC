@@ -25,7 +25,7 @@
 			<c:forEach var="disciplina" items="${disciplinas}">
 				<tr>
 					<td>${disciplina.nome}</td>
-					<td><a href="/tcc/disciplinas/selecionar?id=${disciplina.id}">Alterar</a></td>
+					<td><a href="/tcc/disciplinas/selecionarDisciplina?id=${disciplina.id}">Alterar</a></td>
 
 				</tr>
 			</c:forEach>
