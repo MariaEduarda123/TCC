@@ -25,24 +25,30 @@ public class EntregaController {
 	@RequestMapping("/entregarAtividade")
 	public ModelAndView form(Atividade atividade) {
 		
-		ModelAndView model = new ModelAndView("entregas/entregarAtividade");
 		AlunoDAO alunoDAO = new AlunoDAO();
+		ModelAndView model = new ModelAndView("entregas/entregarAtividade");
 		List<Aluno> alunolista = alunoDAO.getLista();
-		
 		model.addObject("alunos", alunolista);
+		
 		
 		return model;
 	}
 	
 	@PostMapping
-	public String adicionar(Entrega entrega) {
-		entrega.setDataDeEntrega(Calendar.getInstance());
-		System.out.println(entrega);
+	public ModelAndView adicionar(Entrega entrega) {
+		AlunoDAO alunoDAO = new AlunoDAO();
 		EntregaDAO entregaDAO = new EntregaDAO();
-		entregaDAO.adicionar(entrega);
+		AtividadeDAO atividadeDAO = new AtividadeDAO();
+		entrega.setDescricao(entrega.getDescricao());
+		entrega.setDataDeEntrega(Calendar.getInstance());
+		entrega.setAluno(alunoDAO.getAlunoByID((long) entrega.getAluno().getId()));
+		entrega.setAtividade(atividadeDAO.getAtividadeByID(entrega.getAtividade().getId()));
 		
+		System.out.println(entrega);
+		entregaDAO.adicionar(entrega);
+		return listar(entrega.getAtividade());
 //		return "redirect:atividades/listaAtividadesParaFazer";
-		return "redirect:entregas/listaEntrega";
+		
 	}
 	
 	@GetMapping("/listaEntrega")

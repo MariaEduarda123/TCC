@@ -21,7 +21,7 @@
 			<label>ID:</label> </br>
 			 <input readonly="readonly" type="text" name="atividade.id" value="${atividade.id }">
 		
-			<label>Anexar arquivo:</label>
+			<label>Descrição:</label>
 			 <input type="text" name="descricao" value="${atividade.descricao}">
 		
 			<label>Aluno:</label>

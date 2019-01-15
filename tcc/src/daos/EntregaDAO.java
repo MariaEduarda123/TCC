@@ -21,14 +21,15 @@ public class EntregaDAO {
 	
 	public boolean adicionar(Entrega entrega) {
 
-		String sql = "insert into entregas (dataDaEntrega, atividade_id, aluno_id) values (?, ?, ?);";
+		String sql = "insert into entregas (descricao, dataDaEntrega, atividade_id, aluno_id) values (?, ?, ?, ?);";
 
 		try {
 			java.sql.PreparedStatement stmt = connection.prepareStatement(sql);
 
-			stmt.setTimestamp(1, new java.sql.Timestamp(entrega.getDataDeEntrega().getTimeInMillis()));
-			stmt.setLong(2, entrega.getAtividade().getId());
-			stmt.setLong(3, entrega.getAluno().getId());
+			stmt.setString(1, entrega.getDescricao());
+			stmt.setTimestamp(2, new java.sql.Timestamp(entrega.getDataDeEntrega().getTimeInMillis()));
+			stmt.setLong(3, entrega.getAtividade().getId());
+			stmt.setLong(4, entrega.getAluno().getId());
 
 			stmt.execute();
 			stmt.close();
@@ -51,6 +52,8 @@ public class EntregaDAO {
 			while (rs.next()) {
 				Entrega entrega = new Entrega();
 				entrega.setId(rs.getInt("id"));
+				
+				entrega.setDescricao("descricao");
 				Aluno aluno = new AlunoDAO().getAlunoByID(rs.getLong("aluno_id"));
 				entrega.setAluno(aluno);
 				Atividade atividade = new AtividadeDAO().getAtividadeByID(rs.getInt("atividade_id"));

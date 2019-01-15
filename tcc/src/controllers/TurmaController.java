@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import daos.DisciplinaDAO;
 import daos.ProfessorDAO;
 import daos.TurmaDAO;
 import models.Professor;
@@ -20,6 +21,7 @@ public class TurmaController {
 	@RequestMapping("/adicionarTurma")
 	public ModelAndView form() {
 		ModelAndView model = new ModelAndView("turmas/adicionarTurma");
+		model.addObject("disciplinas", new DisciplinaDAO().getLista());
 		model.addObject("professores", new ProfessorDAO().getLista());
 		return model;
 	}

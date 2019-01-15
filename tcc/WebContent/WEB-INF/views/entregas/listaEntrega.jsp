@@ -25,7 +25,7 @@
 		<tbody>
 			<c:forEach var="entrega" items="${entregas}">
 				<tr>
-					<td>${entrega.atividade.descricao}</td>
+					<td>${entrega.descricao}</td>
 					<td>${entrega.aluno.nome}</td>
 					<td>${entrega.dataDeEntrega.time}</td>
 				</tr>
