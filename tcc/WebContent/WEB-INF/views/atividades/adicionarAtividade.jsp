@@ -13,6 +13,7 @@
 <c:import url="../menu.jsp"></c:import>
 	<h1>Registrar Atividades</h1>
 	<form action="/tcc/atividades"  method="post">
+	
 			<label>Descrição:</label>
 			<input type="text" name="descricao">
 			<label>Data de Entrega:</label>

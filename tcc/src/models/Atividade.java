@@ -1,5 +1,4 @@
 package models;
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -52,6 +51,5 @@ public class Atividade {
 	public void setEntregas(List<Entrega> entregas) {
 		this.entregas = entregas;
 	}
-
 
 }
